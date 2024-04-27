@@ -2,13 +2,38 @@
 
 <ion-content>
 
-  <!--nuevoproducto-->
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeLg="4" sizeMd="4" size="6" *ngFor="let e of entrys">
+        <ion-card>
+          <img [src]="e.image"/>
+          <ion-card-header>
+            <ion-card-title>{{e.titulo}}</ion-card-title>
+            <!--<ion-card-subtitle>podemos agregar fecha¿</ion-card-subtitle>-->
+          </ion-card-header>
+        
+          <ion-card-content>
+            {{e.desc}}
+          </ion-card-content>
+          <ion-button fill="clear" (click)="addUpdateEntry(e)">
+            <ion-icon color="warning" name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button  fill="clear" (click)="confirmDeleteProduct(e)" >
+            <ion-icon color="danger" name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--nuevaentrada-->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addUpdateProduct()">
+    <ion-fab-button (click)="addUpdateEntry()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
+  <!--cerrarsesion-->
   <ion-button (click)="signOut()" expand="block" fill="clear" shape="round">
     Cerrar sesion
   </ion-button>

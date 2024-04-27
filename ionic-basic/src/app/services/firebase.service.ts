@@ -3,10 +3,10 @@ import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from 'firebase/auth';
 import { User } from '../models/user.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { getFirestore, setDoc, doc, getDoc, addDoc, collection} from '@angular/fire/firestore';
+import { getFirestore, setDoc, doc, getDoc, addDoc, collection, collectionData, query, updateDoc, deleteDoc} from '@angular/fire/firestore';
 import { UtilsService } from './utils.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { getStorage, uploadString, ref, getDownloadURL } from 'firebase/storage';
+import { getStorage, uploadString, ref, getDownloadURL, deleteObject } from 'firebase/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -50,9 +50,25 @@ export class FirebaseService {
   }
 
   //BD
+  //obtener doc de la collection
+  getCollectionData(path: string, collectionQuery?: any) {
+    const ref = collection(getFirestore(), path);
+    return collectionData(query(ref, collectionQuery), {idField: 'id'});
+  }
+
   //set doc
   setDocument(path: string, data: any){
     return setDoc(doc(getFirestore(), path), data);
+  }
+
+    //act doc
+  updateDocument(path: string, data: any){
+    return updateDoc(doc(getFirestore(), path), data);
+  }
+
+  //eliminar doc
+  deleteDocument(path: string){
+    return deleteDoc(doc(getFirestore(), path));
   }
 
   //obtener doc
@@ -66,10 +82,21 @@ export class FirebaseService {
   }
 
   //almacenamiento
+  //subir imagen
   async uploadImage(path: string, data_url: string){
     return uploadString(ref(getStorage(), path), data_url, 'data_url').then(() => {
       return getDownloadURL(ref(getStorage(), path))
     })
+  }
+
+  //obtener ruta img con url
+  async getFilePath(url: string){
+    return ref(getStorage(), url).fullPath
+  }
+
+  //eliminar entrada
+  deleteFile(path: string){
+    return deleteObject(ref(getStorage(), path));
   }
 
 }

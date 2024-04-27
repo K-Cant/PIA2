@@ -5,23 +5,21 @@ import { CustomInputComponent } from './components/custom-input/custom-input.com
 import { LogoComponent } from './components/logo/logo.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddUpdateProductComponent } from './components/add-update-product/add-update-product.component';
-
-
+import { AddUpdateDiaryyComponent } from './components/add-update-diaryy/add-update-diaryy.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     CustomInputComponent,
     LogoComponent,
-    AddUpdateProductComponent
+    AddUpdateDiaryyComponent
   ],
   exports: [
     HeaderComponent,
     CustomInputComponent,
     ReactiveFormsModule,
     LogoComponent ,
-    AddUpdateProductComponent 
+    AddUpdateDiaryyComponent
   ],
   imports: [
     CommonModule,
