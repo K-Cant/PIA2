@@ -6,11 +6,14 @@
       <ion-button (click)="dismissModal()" *ngIf="isModal">
         <ion-icon name="close-circle-outline"></ion-icon>
       </ion-button>
+
+      <ion-menu-button *ngIf="showMenu" menu="menu-content"></ion-menu-button>
+
     </ion-buttons>
 
     <ion-title>
-      <strong>{{title}}</strong>
-      <div class="admin">TIME4U</div>
+      <div class="titulo"><strong>{{title}}</strong></div>
+      <div class="admin">Diario Virtual ☺</div>
     </ion-title>
 
   </ion-toolbar>

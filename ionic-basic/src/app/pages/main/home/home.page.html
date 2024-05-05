@@ -1,4 +1,4 @@
-<app-header title="Inicio"></app-header>
+<app-header [showMenu]="true" title="Time4u"></app-header>
 
 <ion-content>
 
@@ -16,10 +16,10 @@
             {{e.desc}}
           </ion-card-content>
           <ion-button fill="clear" (click)="addUpdateEntry(e)">
-            <ion-icon color="warning" name="create-outline"></ion-icon>
+            <ion-icon color="dark" name="create-outline"></ion-icon>
           </ion-button>
           <ion-button  fill="clear" (click)="confirmDeleteProduct(e)" >
-            <ion-icon color="danger" name="trash-outline"></ion-icon>
+            <ion-icon color="danger" name="skull"></ion-icon>
           </ion-button>
         </ion-card>
       </ion-col>
