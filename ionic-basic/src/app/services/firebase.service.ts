@@ -1,12 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from 'firebase/auth';
 import { User } from '../models/user.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { getFirestore, setDoc, doc, getDoc, addDoc, collection, collectionData, query, updateDoc, deleteDoc} from '@angular/fire/firestore';
 import { UtilsService } from './utils.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { getStorage, uploadString, ref, getDownloadURL, deleteObject } from 'firebase/storage';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail, updatePassword, updateEmail } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,30 @@ export class FirebaseService {
   firestore = inject(AngularFirestore);
   storage = inject(AngularFireStorage);
   utilsSvc = inject(UtilsService);
+
+  private user: User;
+
+
+	constructor(private afAuth: AngularFireAuth) {
+
+	}
+
+	getName(): string {
+		return this.user.name
+  }
+
+  updateUserEmail(newEmail: string, password:string, oldEmail:string){
+    return this.afAuth.signInWithEmailAndPassword(oldEmail, password).then(userCredentials => {
+                return userCredentials.user.updateEmail(newEmail);
+    })
+}
+
+  updateCon(NewPassword:string, password:string ,Email:string){
+    return this.afAuth.signInWithEmailAndPassword(Email, password).then(userCredentials => {
+                return userCredentials.user.updatePassword(NewPassword);
+  })
+}
+
 
   //auth
   getAuth(){
