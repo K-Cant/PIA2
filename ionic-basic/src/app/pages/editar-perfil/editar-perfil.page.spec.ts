@@ -6,6 +6,10 @@ describe('EditarPerfilPage', () => {
   let fixture: ComponentFixture<EditarPerfilPage>;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [EditarPerfilPage],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(EditarPerfilPage);
     component = fixture.componentInstance;
     fixture.detectChanges();

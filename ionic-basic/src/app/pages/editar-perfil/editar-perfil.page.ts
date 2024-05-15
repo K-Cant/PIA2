@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollectionGroup, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
@@ -12,7 +12,7 @@ import { UtilsService } from 'src/app/services/utils.service';
   templateUrl: './editar-perfil.page.html',
   styleUrls: ['./editar-perfil.page.scss'],
 })
-export class EditarPerfilPage implements OnInit {
+export class EditarPerfilPage {
 
   busy: boolean = false;
 
@@ -30,8 +30,7 @@ export class EditarPerfilPage implements OnInit {
     private fbs: FirebaseService
   ) { }
 
-  ngOnInit() {
-  }
+
 
   async presentAlert(title: string, content: string){
     const alert = await this.alct.create({
@@ -42,23 +41,34 @@ export class EditarPerfilPage implements OnInit {
     await alert.present()
   }
 
-  actualizar() {
-
-
-    if(!this.nuevoe){
-      return this.presentAlert('Error','Ingrese un correo nuevo')
+  async actualizar(): Promise<void> {
+    if (!this.nuevoe) {
+      await this.presentAlert('Error', 'Ingrese un correo nuevo');
     }
-    if(!this.e){
-      return this.presentAlert('Error','Ingrese el correo actual')
+    if (!this.e) {
+      await this.presentAlert('Error', 'Ingrese el correo actual');
     }
-    if(!this.c){
-      return this.presentAlert('Error','Ingrese la contraseña actual')
+    if (!this.c) {
+      await this.presentAlert('Error', 'Ingrese la contraseña actual');
     }
 
+    if (this.nuevoe === this.e) {
+      await this.presentAlert('Error', 'El nuevo correo electrónico debe ser diferente al correo electrónico actual');
+    }
 
-    return this.fbs.updateUserEmail(this.nuevoe,this.c,this.e);
+    this.busy = true;
 
-    
+    try {
+      try {
+        await this.fbs.updateUserEmail(this.nuevoe, this.c, this.e);
+        this.presentAlert('Éxito', 'El correo electrónico se ha actualizado correctamente');
+      } catch (error) {
+        console.error('Error al actualizar el correo electrónico:', error);
+        this.presentAlert('Error', 'No se pudo actualizar el correo electrónico');
+      }
+    } finally {
+      this.busy = false;
+    }
+  }
 
-    
- 
+    }
