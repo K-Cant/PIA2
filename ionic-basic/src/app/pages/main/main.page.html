@@ -3,6 +3,9 @@
 
   <ion-content class="ion-text-center">
 
+    <ion-button expand="block" (click)="getCurrentLocation()">Current Location </ion-button>
+
+
     <ion-avatar>
       <img *ngIf="user()?.image" [src]="user()?.image"/>
       <ion-icon *ngIf="!user()?.image" class="empty-icon" name="person-circle-outline"></ion-icon>

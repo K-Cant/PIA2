@@ -3,7 +3,7 @@ import{ Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
-
+import { Geolocation } from '@capacitor/geolocation';
 @Component({
   selector: 'app-main',
   templateUrl: './main.page.html',
@@ -21,6 +21,15 @@ export class MainPage implements OnInit {
   utilsSvc = inject(UtilsService);
 
   currentPath: string = '';
+
+  async getCurrentLocation(){
+    try{
+      const coordinates = await Geolocation.getCurrentPosition();
+      console.log('Current position:', coordinates);
+    }catch(e){
+
+    }
+  }
 
   ngOnInit() {
     this.router.events.subscribe((event:any) => {
