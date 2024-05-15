@@ -29,6 +29,16 @@ export class HomePage implements OnInit {
     this.getEntry();
   }
 
+  doRefresh(event){
+  
+    setTimeout(()=>{
+      this.getEntry();
+      event.target.complete();
+    }, 1000);
+  }
+
+
+
   //obtener entradas
   getEntry() {
     let path = `users/${this.user().uid}/entrys`
