@@ -21,6 +21,23 @@ const routes: Routes = [
     path: 'editar-perfil',
     loadChildren: () => import('./pages/editar-perfil/editar-perfil.module').then( m => m.EditarPerfilPageModule)
   },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
+    path: 'tabs1',
+    loadChildren: () => import('./tabs1/tabs1.module').then( m => m.Tabs1PageModule)
+  },
+  {
+    path: 'tabs2',
+    loadChildren: () => import('./tabs2/tabs2.module').then( m => m.Tabs2PageModule)
+  },
+  {
+    path: 'tabs3',
+    loadChildren: () => import('./tabs3/tabs3.module').then( m => m.Tabs3PageModule)
+  },
+
 ];
 
 @NgModule({

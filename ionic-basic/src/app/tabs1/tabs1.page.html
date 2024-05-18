@@ -1,0 +1,42 @@
+<app-header [showMenu]="true" title="Tareas">
+</app-header>
+
+
+<ion-content>  <ion-toolbar color="light">
+  <ion-buttons slot="end">
+    <ion-button (click)="agregar()">
+      <ion-icon name="add"> </ion-icon>
+      <ion-label>Agregar tarea</ion-label>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Lista de tareas</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item *ngIf="tareas.length === 0" lines="none">
+        <ion-label>No hay tareas</ion-label>
+      </ion-item>
+
+      <ion-list lines="full" *ngIf="tareas.length > 0">
+        <ion-item *ngFor="let tarea of tareas" button>
+          <ion-label>
+            <b>{{ tarea?.name }}</b>
+            <p>{{ tarea.description }}</p>
+          </ion-label>
+          
+          <ion-checkbox slot="end" color="success" (ionChange)="cambiarEstado(tarea)" [(ngModel)]="tarea.estado"></ion-checkbox>
+          <ion-buttons slot="end">
+            <ion-button (click)="eliminar(tarea)">
+              <ion-icon name="trash" color="danger"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>

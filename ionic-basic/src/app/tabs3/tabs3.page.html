@@ -1,0 +1,38 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary"> 
+    <ion-title>
+      Tareas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Tareas completadas</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item *ngIf="tareasCompletadas.length === 0" lines="none">
+        <ion-label>No hay tareas completadas</ion-label>
+      </ion-item>
+
+      <ion-list lines="full" *ngIf="tareasCompletadas.length > 0">
+        <ion-item *ngFor="let tarea of tareasCompletadas" button>
+          <ion-label>
+            <b>{{ tarea?.name }}</b>
+            <p>{{ tarea.description }}</p>
+          </ion-label>
+          
+          <ion-checkbox slot="end" color="success" (ionChange)="cambiarEstado(tarea)" [(ngModel)]="tarea.estado"></ion-checkbox>
+          <ion-buttons slot="end">
+            <ion-button (click)="eliminar(tarea)">
+              <ion-icon name="trash" color="danger"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

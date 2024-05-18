@@ -31,7 +31,7 @@ export class FirebaseService {
 
   updateUserEmail(newEmail: string, password:string, oldEmail:string){
     return this.afAuth.signInWithEmailAndPassword(oldEmail, password).then(userCredentials => {
-                return userCredentials.user.updateEmail(newEmail);
+                return userCredentials.user.verifyBeforeUpdateEmail(newEmail);
     })
 }
 
