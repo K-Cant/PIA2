@@ -13,7 +13,7 @@ export class Tabs3Page implements OnInit {
   tareasCompletadas = [];
   ngOnInit(){
     this.tareasService.Tarea$.subscribe( _tareas => {
-      this.tareasCompletadas = _tareas.filter( t => t.estado == true );
+      this.tareasCompletadas = _tareas.filter( t => t.state == true );
     });
   }
 

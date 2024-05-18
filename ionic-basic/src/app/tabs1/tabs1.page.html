@@ -28,7 +28,7 @@
             <p>{{ tarea.description }}</p>
           </ion-label>
           
-          <ion-checkbox slot="end" color="success" (ionChange)="cambiarEstado(tarea)" [(ngModel)]="tarea.estado"></ion-checkbox>
+          <ion-checkbox slot="end" color="success" (ionChange)="cambiarEstado(tarea)" [(ngModel)]="tarea.state"></ion-checkbox>
           <ion-buttons slot="end">
             <ion-button (click)="eliminar(tarea)">
               <ion-icon name="trash" color="danger"></ion-icon>
@@ -38,5 +38,11 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
+  <ion-tabs>
+    <ion-button size="large" routerLink="/tabs2" color="light">Tareas Pendientes</ion-button>
+    <ion-button size="large" routerLink="/tabs3" color="light">Tareas Completadas</ion-button>
+  
+
+</ion-tabs>
   
 </ion-content>

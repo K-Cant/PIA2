@@ -14,7 +14,7 @@ export class Tabs2Page implements OnInit {
   ngOnInit(){
     this.tareasService.Tarea$.subscribe( _tareas => {
       console.log('Lista de tareas en tab 2', _tareas);
-      this.tareasPendiente = _tareas.filter( t => t.estado == false );
+      this.tareasPendiente = _tareas.filter( t => t.state == false );
     });
   }
 

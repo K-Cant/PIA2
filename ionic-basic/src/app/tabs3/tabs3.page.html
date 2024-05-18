@@ -25,7 +25,7 @@
             <p>{{ tarea.description }}</p>
           </ion-label>
           
-          <ion-checkbox slot="end" color="success" (ionChange)="cambiarEstado(tarea)" [(ngModel)]="tarea.estado"></ion-checkbox>
+          <ion-checkbox slot="end" color="success" (ionChange)="cambiarEstado(tarea)" [(ngModel)]="tarea.state"></ion-checkbox>
           <ion-buttons slot="end">
             <ion-button (click)="eliminar(tarea)">
               <ion-icon name="trash" color="danger"></ion-icon>

@@ -13,7 +13,7 @@ export class TabsPage implements OnInit{
 
   ngOnInit() {
     this.tareasService.Tarea$.subscribe( _tareas => {
-      this.tareasPendientes = _tareas.filter( t => t.estado == false );
+      this.tareasPendientes = _tareas.filter( t => t.stte == false );
     })
   }
 }
